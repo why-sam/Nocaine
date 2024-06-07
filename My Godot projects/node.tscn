@@ -1,0 +1,108 @@
+[gd_scene load_steps=14 format=3 uid="uid://do6nugbipcr8n"]
+
+[ext_resource type="Texture2D" uid="uid://c2wfbdeu8kwa5" path="res://BG City.jpg" id="1_rmx7g"]
+[ext_resource type="Texture2D" uid="uid://bedymtsxo0mcx" path="res://smoke-cloud-explosion-sprite-or-bomb-blast-effects-vector-50219766-removebg-preview.png" id="2_stk8n"]
+[ext_resource type="Texture2D" uid="uid://ppy8ku65fa6c" path="res://Homeless_People_by_gumpyfunction_on_DeviantArt-removebg-preview.png" id="4_tg4sa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ksrxl"]
+atlas = ExtResource("2_stk8n")
+region = Rect2(0, 0, 146, 161)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f0aox"]
+atlas = ExtResource("2_stk8n")
+region = Rect2(146, 0, 146, 161)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_82gyn"]
+atlas = ExtResource("2_stk8n")
+region = Rect2(292, 0, 146, 161)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d43si"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ksrxl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f0aox")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_82gyn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g2tu6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lcw0k"]
+atlas = ExtResource("4_tg4sa")
+region = Rect2(0, 0, 64, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7vgcu"]
+atlas = ExtResource("4_tg4sa")
+region = Rect2(64, 0, 64, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ldsiy"]
+atlas = ExtResource("4_tg4sa")
+region = Rect2(128, 0, 64, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aamlu"]
+atlas = ExtResource("4_tg4sa")
+region = Rect2(192, 0, 64, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_onlem"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lcw0k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7vgcu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ldsiy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aamlu")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[node name="Node" type="Node"]
+metadata/_edit_vertical_guides_ = [9762.0]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 296.0
+offset_top = 174.0
+offset_right = 7175.0
+offset_bottom = 4170.0
+texture = ExtResource("1_rmx7g")
+
+[node name="Area2D" type="Area2D" parent="TextureRect"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TextureRect/Area2D"]
+position = Vector2(2046, 2167)
+scale = Vector2(0.910959, 1)
+sprite_frames = SubResource("SpriteFrames_d43si")
+frame_progress = 0.623468
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TextureRect/Area2D"]
+position = Vector2(2051, 2172)
+shape = SubResource("CapsuleShape2D_g2tu6")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+position = Vector2(2316.75, 3525.25)
+scale = Vector2(12.1484, 9.07813)
+sprite_frames = SubResource("SpriteFrames_onlem")
+animation = &"new_animation"
+frame_progress = 0.315193

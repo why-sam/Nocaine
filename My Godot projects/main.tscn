@@ -1,0 +1,174 @@
+[gd_scene load_steps=16 format=3 uid="uid://cakiylogxa1ek"]
+
+[ext_resource type="Texture2D" uid="uid://c2wfbdeu8kwa5" path="res://BG City.jpg" id="1_v20at"]
+[ext_resource type="Texture2D" uid="uid://bedymtsxo0mcx" path="res://smoke-cloud-explosion-sprite-or-bomb-blast-effects-vector-50219766-removebg-preview.png" id="2_hcibh"]
+[ext_resource type="Texture2D" uid="uid://4641mvqjn581" path="res://Terrain (16x16).png" id="3_xvtqa"]
+[ext_resource type="PackedScene" uid="uid://ds6qfwsp1xusk" path="res://character_body_2d.tscn" id="4_8exeg"]
+[ext_resource type="PackedScene" uid="uid://d1p0fqieyivv" path="res://area_2d.tscn" id="5_qjlt1"]
+[ext_resource type="PackedScene" uid="uid://bjabyrtyn1k6f" path="res://test.tscn" id="6_iuofk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ksrxl"]
+atlas = ExtResource("2_hcibh")
+region = Rect2(0, 0, 146, 161)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f0aox"]
+atlas = ExtResource("2_hcibh")
+region = Rect2(146, 0, 146, 161)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_82gyn"]
+atlas = ExtResource("2_hcibh")
+region = Rect2(292, 0, 146, 161)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d43si"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ksrxl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f0aox")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_82gyn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4jv23"]
+radius = 9.73277
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e2po8"]
+texture = ExtResource("3_xvtqa")
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_5gj8f"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_e2po8")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_miptd"]
+size = Vector2(14.796, 17.86)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u4vvw"]
+size = Vector2(160.2, 43.5001)
+
+[node name="Node" type="Node"]
+metadata/_edit_vertical_guides_ = [9762.0]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -1578.0
+offset_top = 60.0
+offset_right = 7938.0
+offset_bottom = 6268.0
+texture = ExtResource("1_v20at")
+
+[node name="Collectible" type="Area2D" parent="TextureRect"]
+position = Vector2(1, 0)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TextureRect/Collectible"]
+position = Vector2(4477.99, 1675.89)
+scale = Vector2(-0.0136049, -0.0122005)
+sprite_frames = SubResource("SpriteFrames_d43si")
+frame_progress = 0.623468
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TextureRect/Collectible/AnimatedSprite2D"]
+position = Vector2(157.614, -60.1946)
+shape = SubResource("CircleShape2D_4jv23")
+
+[node name="TileMap" type="TileMap" parent="TextureRect"]
+position = Vector2(7, 2)
+scale = Vector2(10, 10)
+tile_set = SubResource("TileSet_5gj8f")
+format = 2
+layer_0/tile_data = PackedInt32Array(1507340, 0, 0, 1507339, 0, 0, 1507338, 0, 0, 1507337, 0, 0, 1507336, 0, 0, 1507335, 0, 0, 1507334, 0, 0, 1507333, 0, 0, 1507332, 0, 0, 1507331, 0, 0, 1507330, 0, 0, 1507329, 0, 0, 1441793, 0, 0, 1310721, 0, 0, 1376257, 0, 0, 1245185, 0, 0, 1048577, 0, 0, 1114113, 0, 0, 1179649, 0, 0, 983042, 0, 0, 917507, 0, 0, 851972, 0, 0, 851973, 0, 0, 851975, 0, 0, 851974, 0, 0, 851976, 0, 0, 851977, 0, 0, 917514, 0, 0, 983051, 0, 0)
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("4_8exeg")]
+position = Vector2(3780, 2623)
+scale = Vector2(10, 10)
+
+[node name="CharacterBody2D2" type="CharacterBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D2"]
+position = Vector2(3019, 4461)
+scale = Vector2(500, 50)
+shape = SubResource("RectangleShape2D_miptd")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CharacterBody2D2"]
+position = Vector2(3078, 1562.5)
+scale = Vector2(500, 50)
+shape = SubResource("RectangleShape2D_miptd")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="CharacterBody2D2"]
+position = Vector2(-416, 2591)
+scale = Vector2(10, 10)
+shape = SubResource("RectangleShape2D_u4vvw")
+
+[node name="Area2D" parent="." instance=ExtResource("5_qjlt1")]
+position = Vector2(2827, 2820)
+
+[node name="test" parent="." instance=ExtResource("6_iuofk")]
+position = Vector2(-168, 3575)
+
+[node name="test2" parent="." instance=ExtResource("6_iuofk")]
+position = Vector2(5657, 3363)
+
+[node name="test3" parent="." instance=ExtResource("6_iuofk")]
+position = Vector2(380, 3207)
+
+[node name="test4" parent="." instance=ExtResource("6_iuofk")]
+position = Vector2(1597, 3440)
+
+[node name="test5" parent="." instance=ExtResource("6_iuofk")]
+position = Vector2(1239, 2448)
+
+[node name="test6" parent="." instance=ExtResource("6_iuofk")]
+position = Vector2(2995, 3522)
+
+[node name="test7" parent="." instance=ExtResource("6_iuofk")]
+position = Vector2(-255, 3156)
+
+[node name="test8" parent="." instance=ExtResource("6_iuofk")]
+position = Vector2(2529, 2546)
+
+[node name="test9" parent="." instance=ExtResource("6_iuofk")]
+position = Vector2(5209, 2378)
+
+[node name="test10" parent="." instance=ExtResource("6_iuofk")]
+position = Vector2(713, 650)
+
+[node name="test11" parent="." instance=ExtResource("6_iuofk")]
+position = Vector2(3489, 402)
+
+[node name="test12" parent="." instance=ExtResource("6_iuofk")]
+position = Vector2(5225, 498)
+
+[node name="test13" parent="." instance=ExtResource("6_iuofk")]
+position = Vector2(1593, 626)
+
+[node name="test14" parent="." instance=ExtResource("6_iuofk")]
+position = Vector2(6825, 2634)
+
+[node name="test15" parent="." instance=ExtResource("6_iuofk")]
+position = Vector2(6641, 3650)
+
+[node name="test16" parent="." instance=ExtResource("6_iuofk")]
+position = Vector2(674, 5240)
+
+[node name="test17" parent="." instance=ExtResource("6_iuofk")]
+position = Vector2(-882, 3543)
+
+[connection signal="body_entered" from="TextureRect/Collectible" to="CharacterBody2D" method="_on_collectible_body_entered"]
+[connection signal="body_entered" from="Area2D" to="CharacterBody2D" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="test" to="CharacterBody2D" method="_on_test_body_entered"]

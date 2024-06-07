@@ -1,0 +1,115 @@
+[gd_scene load_steps=15 format=3 uid="uid://ds6qfwsp1xusk"]
+
+[ext_resource type="Script" path="res://CharacterBody2D.gd" id="1_efiii"]
+[ext_resource type="Texture2D" uid="uid://511pdh13g2g" path="res://Homeless_People_by_gumpyfunction_on_DeviantArt-removebg-preview.png" id="2_nelsw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xrki6"]
+atlas = ExtResource("2_nelsw")
+region = Rect2(4, 8, 63, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kwpiq"]
+atlas = ExtResource("2_nelsw")
+region = Rect2(67, 8, 63, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2hhpp"]
+atlas = ExtResource("2_nelsw")
+region = Rect2(130, 8, 63, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d6bij"]
+atlas = ExtResource("2_nelsw")
+region = Rect2(193, 8, 63, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_phsht"]
+atlas = ExtResource("2_nelsw")
+region = Rect2(0, 96, 64, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8yeh2"]
+atlas = ExtResource("2_nelsw")
+region = Rect2(64, 96, 64, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2efmk"]
+atlas = ExtResource("2_nelsw")
+region = Rect2(128, 96, 128, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_an5sa"]
+atlas = ExtResource("2_nelsw")
+region = Rect2(0, 192, 64, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vdc1a"]
+atlas = ExtResource("2_nelsw")
+region = Rect2(64, 192, 64, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6rekx"]
+atlas = ExtResource("2_nelsw")
+region = Rect2(128, 192, 64, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4kn20"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xrki6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kwpiq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2hhpp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d6bij")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_phsht")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8yeh2")
+}],
+"loop": true,
+"name": &"jumping",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2efmk")
+}],
+"loop": true,
+"name": &"overdosed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_an5sa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vdc1a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6rekx")
+}],
+"loop": true,
+"name": &"running",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v4gyh"]
+radius = 16.1245
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_efiii")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+sprite_frames = SubResource("SpriteFrames_4kn20")
+animation = &"running"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.1, 0.1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 41)
+shape = SubResource("CircleShape2D_v4gyh")
